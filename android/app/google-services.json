@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1042234408896",
+    "project_id": "eshoping-8ff4c",
+    "storage_bucket": "eshoping-8ff4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042234408896:android:f94d4d1c57a220f4ca9225",
+        "android_client_info": {
+          "package_name": "com.eshoping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042234408896-0c1st5iul26io1ni3geglt7ov7cmcvug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eshoping",
+            "certificate_hash": "8179d4da94e58e4c7d55931126cc76095baba8e9"
+          }
+        },
+        {
+          "client_id": "1042234408896-lo0ld0aonr4ldabn4c4aifvau1nnsc4j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVmXCZkD1USC5SCb5zFmDdPV1R3WrE1y0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042234408896-lo0ld0aonr4ldabn4c4aifvau1nnsc4j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
