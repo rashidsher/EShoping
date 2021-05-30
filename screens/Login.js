@@ -14,6 +14,7 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import FormInput from '../component/FormInput';
 import FormButton from '../component/FormButton';
 import SocialButton from '../component/SocialButton';
+import {AuthContext} from '../navigation/AuthProvider';
 
 export default function Login({navigation}) {
   const [email, setEmail] = useState();

@@ -25,17 +25,17 @@ const Stack = createStackNavigator();
 const AuthStack = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
   let routeName;
-  const DrawerTab = () => {
-    return (
-      <Drawer.Navigator>
-        <Drawer.Screen
-          name="Home"
-          component={Home}
-          title="Home"></Drawer.Screen>
-        <Drawer.Screen name="Setting" component={Setting}></Drawer.Screen>
-      </Drawer.Navigator>
-    );
-  };
+  // const DrawerTab = () => {
+  //   return (
+  //     <Drawer.Navigator>
+  //       <Drawer.Screen
+  //         name="Home"
+  //         component={Home}
+  //         title="Home"></Drawer.Screen>
+  //       <Drawer.Screen name="Setting" component={Setting}></Drawer.Screen>
+  //     </Drawer.Navigator>
+  //   );
+  // };
 
 
   useEffect(() => {
@@ -99,8 +99,8 @@ const AuthStack = () => {
       />
       <Stack.Screen name="splash" component={SplashScreen} />
       <Stack.Screen name="reset" component={ResetPassword} />
-      <Stack.Screen name="details" component={Details} />
-      <Stack.Screen name="drawerTab" children={DrawerTab} />
+      {/* <Stack.Screen name="details" component={Details} />
+      <Stack.Screen name="drawerTab" children={DrawerTab} /> */}
     </Stack.Navigator>
   );
 };
