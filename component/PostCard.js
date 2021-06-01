@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+ 
 import {
   Container,
   Card,
@@ -15,7 +15,7 @@ import {
   Interaction,
   InteractionText,
   Divider,
-} from '../styles/FeedStyles';
+} from '../screens/styles/FeedStyles';
 
 import ProgressiveImage from './ProgressiveImage';
 
@@ -48,56 +48,34 @@ const PostCard = ({item, onDelete, onPress}) => {
     commentText = 'Comment';
   }
 
-  const getUser = async () => {
-    await firestore()
-      .collection('users')
-      .doc(item.userId)
-      .get()
-      .then((documentSnapshot) => {
-        if (documentSnapshot.exists) {
-          console.log('User Data', documentSnapshot.data());
-          setUserData(documentSnapshot.data());
-        }
-      });
-  };
+  // const getUser = async () => {
+  //   await firestore()
+  //     .collection('users')
+  //     .doc(item.userId)
+  //     .get()
+  //     .then((documentSnapshot) => {
+  //       if (documentSnapshot.exists) {
+  //         console.log('User Data', documentSnapshot.data());
+  //         setUserData(documentSnapshot.data());
+  //       }
+  //     });
+  // };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   return (
-    <Card key={item.id}>
+    <Card>
       <UserInfo>
-        <UserImg
-          source={{
-            uri: userData
-              ? userData.userImg ||
-                'https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg'
-              : 'https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg',
-          }}
-        />
+        <UserImg source={{uri: item.userImg}} />
         <UserInfoText>
-          <TouchableOpacity onPress={onPress}>
-            <UserName>
-              {userData ? userData.fname || 'Test' : 'Test'}{' '}
-              {userData ? userData.lname || 'User' : 'User'}
-            </UserName>
-          </TouchableOpacity>
-          <PostTime>{moment(item.postTime.toDate()).fromNow()}</PostTime>
+          <UserName>{item.userName}</UserName>
+          <PostTime>{item.postTime.toString()}</PostTime>
         </UserInfoText>
       </UserInfo>
       <PostText>{item.post}</PostText>
-      {/* {item.postImg != null ? <PostImg source={{uri: item.postImg}} /> : <Divider />} */}
-      {item.postImg != null ? (
-        <ProgressiveImage
-          defaultImageSource={require('../assets/default-img.jpg')}
-          source={{uri: item.postImg}}
-          style={{width: '100%', height: 250}}
-          resizeMode="cover"
-        />
-      ) : (
-        <Divider />
-      )}
+      {item.postImg != null ? <PostImg source={{uri:item.postImg}} /> : <Divider />}
 
       <InteractionWrapper>
         <Interaction active={item.liked}>
@@ -108,11 +86,6 @@ const PostCard = ({item, onDelete, onPress}) => {
           <Ionicons name="md-chatbubble-outline" size={25} />
           <InteractionText>{commentText}</InteractionText>
         </Interaction>
-        {user.uid == item.userId ? (
-          <Interaction onPress={() => onDelete(item.id)}>
-            <Ionicons name="md-trash-bin" size={25} />
-          </Interaction>
-        ) : null}
       </InteractionWrapper>
     </Card>
   );
