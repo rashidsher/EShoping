@@ -151,7 +151,7 @@ export default function AddPostScreen() {
           multiline
           numberOfLines={4}
           value={post}
-          onChangeText={content => setPost(content)} 
+          onChangeText={content => setPost(content)}  
         />
         {uploading ? (
           <StatusWrapper>

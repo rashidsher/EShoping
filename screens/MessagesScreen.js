@@ -1,31 +1,96 @@
-import React, {Component, component} from 'react';
+import React from 'react';
+import {View, Text, Button, StyleSheet, FlatList} from 'react-native';
 import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+  Container,
+  Card,
+  UserInfo,
+  UserImgWrapper,
+  UserImg,
+  UserInfoText,
+  UserName,
+  PostTime,
+  MessageText,
+  TextSection,
+} from '../screens/styles/MessageStyles';
 
-export default function MessagesScreen() {
+export default function MessagesScreen({navigation}) {
+
+  const Messages = [
+    {
+      id: '1',
+      userName: 'Jenny Doe',
+      userImg: require('../component/assest/users/user-3.jpg'),
+      messageTime: '4 mins ago',
+      messageText:
+        'Hey there, this is my test for a post of my social app in React Native.',
+    },
+    {
+      id: '2',
+      userName: 'John Doe',
+      userImg: require('../component/assest/users/user-1.jpg'),
+      messageTime: '2 hours ago',
+      messageText:
+        'Hey there, this is my test for a post of my social app in React Native.',
+    },
+    {
+      id: '3',
+      userName: 'Ken William',
+      userImg: require('../component/assest/users/user-4.jpg'),
+      messageTime: '1 hours ago',
+      messageText:
+        'Hey there, this is my test for a post of my social app in React Native.',
+    },
+    {
+      id: '4',
+      userName: 'Selina Paul',
+      userImg: require('../component/assest/users/user-6.jpg'),
+      messageTime: '1 day ago',
+      messageText:
+        'Hey there, this is my test for a post of my social app in React Native.',
+    },
+    {
+      id: '5',
+      userName: 'Christy Alex',
+      userImg: require('../component/assest/users/user-7.jpg'),
+      messageTime: '2 days ago',
+      messageText:
+        'Hey there, this is my test for a post of my social app in React Native.',
+    },
+  ];
   return (
-    <View style={styles.container}>
-      <Text style={styles.logo}>Messages Screen</Text>
-    </View>
+    <Container>
+      <FlatList
+        data={Messages}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+          <Card
+            onPress={() =>
+              navigation.navigate('Chat', {userName: item.userName})
+            }>
+            <UserInfo>
+              <UserImgWrapper>
+                <UserImg source={item.userImg} />
+              </UserImgWrapper>
+              <TextSection>
+                <UserInfoText>
+                  <UserName>{item.userName}</UserName>
+                  <PostTime>{item.messageTime}</PostTime>
+                </UserInfoText>
+                <MessageText>{item.messageText}</MessageText>
+              </TextSection>
+            </UserInfo>
+          </Card>
+        )}
+      />
+    </Container>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#003f5c',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  logo: {
-    fontWeight: 'bold',
-    fontSize: 50,
-    color: '#fb5b5a',
-    marginBottom: 40,
   },
 });

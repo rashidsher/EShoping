@@ -48,34 +48,49 @@ const PostCard = ({item, onDelete, onPress}) => {
     commentText = 'Comment';
   }
 
-  // const getUser = async () => {
-  //   await firestore()
-  //     .collection('users')
-  //     .doc(item.userId)
-  //     .get()
-  //     .then((documentSnapshot) => {
-  //       if (documentSnapshot.exists) {
-  //         console.log('User Data', documentSnapshot.data());
-  //         setUserData(documentSnapshot.data());
-  //       }
-  //     });
-  // };
+  const getUser = async () => {
+    await firestore()
+      .collection('users')
+      .doc(item.userId)
+      .get()
+      .then((documentSnapshot) => {
+        if (documentSnapshot.exists) {
+          console.log('User Data', documentSnapshot.data());
+          setUserData(documentSnapshot.data());
+        }
+      });
+  };
 
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <Card>
       <UserInfo>
         <UserImg source={{uri: item.userImg}} />
         <UserInfoText>
-          <UserName>{item.userName}</UserName>
-          <PostTime>{item.postTime.toString()}</PostTime>
+          <TouchableOpacity onPress={onPress}>
+            <UserName>
+              {userData ? userData.fname || 'Test' : 'Test'}{' '}
+              {userData ? userData.lname || 'User' : 'User'}
+            </UserName>
+          </TouchableOpacity>
+          <PostTime>{moment(item.postTime.toDate()).fromNow()}</PostTime>
         </UserInfoText>
       </UserInfo>
       <PostText>{item.post}</PostText>
-      {item.postImg != null ? <PostImg source={{uri:item.postImg}} /> : <Divider />}
+      {/* <PostImg source={{uri: item.postImg}} /> */}
+      {item.postImg != null ? (
+        <ProgressiveImage
+          defaultImageSource={require('../component/assest/default-img.jpg')}
+          source={{uri: item.postImg}}
+          style={{width: '100%', height: 250}}
+          resizeMode="cover"
+        />
+      ) : (
+        <Divider />
+      )}
 
       <InteractionWrapper>
         <Interaction active={item.liked}>
@@ -86,6 +101,11 @@ const PostCard = ({item, onDelete, onPress}) => {
           <Ionicons name="md-chatbubble-outline" size={25} />
           <InteractionText>{commentText}</InteractionText>
         </Interaction>
+        {user.uid == item.userId ? (
+          <Interaction onPress={() => onDelete(item.id)}>
+            <Ionicons name="md-trash-bin" size={25} />
+          </Interaction>
+        ) : null}
       </InteractionWrapper>
     </Card>
   );

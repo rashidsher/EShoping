@@ -19,7 +19,7 @@ const Tab = createBottomTabNavigator();
 const FeedStack = ({navigation}) => (
   <Stack.Navigator>
     <Stack.Screen
-      name="RN Social"
+      name="EShoping"
       component={HomeScreen}
       options={{
         headerTitleAlign: 'center',
@@ -62,6 +62,7 @@ const FeedStack = ({navigation}) => (
             <Ionicons name="arrow-back" size={25} color="#2e64e5" />
           </View>
         ),
+        
       }}
     />
     <Stack.Screen

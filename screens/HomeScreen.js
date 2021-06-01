@@ -196,7 +196,7 @@ export default function HomeScreen({navigation}) {
         );
         setDeleted(true);
       })
-      .catch(e => console.log('Error deleting posst.', e));
+      .catch(e => console.log('Error deleting post.', e));
   };
 
   const ListHeader = () => {
