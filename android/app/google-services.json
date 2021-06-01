@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "1042234408896-0c1st5iul26io1ni3geglt7ov7cmcvug.apps.googleusercontent.com",
+          "client_id": "1042234408896-ojdljuk4ush1vti2sig8ed2c5no0la9p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.eshoping",
-            "certificate_hash": "8179d4da94e58e4c7d55931126cc76095baba8e9"
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
